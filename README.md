@@ -509,3 +509,51 @@ Evidence Collection
         ↓
 Security Reporting
 ```
+
+## Key Outcomes
+
+The Week 02 assessment successfully completed the core **footprinting and network-scanning activities** within the authorized cybersecurity laboratory environment.
+
+- External footprinting performed using six Kali Linux reconnaissance tools
+- Domain and DNS information collected and analyzed
+- Web technologies identified through fingerprinting
+- HTTP response information examined
+- Web Application Firewall detection performed
+- DNS records enumerated
+- Local network scanned using Zenmap/Nmap
+- **4 live hosts** identified within the assessed LAN
+- IP and MAC addresses recorded
+- Network topology generated and exported for evidence
+- Assessment results documented for further security analysis
+
+## Security & Responsible Use
+
+This laboratory is intended for authorized cybersecurity education, reconnaissance, and security testing.
+
+All footprinting and network-scanning activities must remain within systems, networks, and applications that are owned or explicitly authorized for testing.
+
+No unauthorized access, exploitation, brute-force activity, or disruptive testing was performed as part of this assessment.
+
+## Mentor
+
+**Waqas Karim (CCIE)**
+
+Technical guidance and mentorship provided throughout the cybersecurity internship.
+
+## Phase 02 — Completion
+
+**Status:** `COMPLETED`
+
+Week 02 successfully demonstrated the transition from **external reconnaissance to active network discovery**. The target's external footprint was assessed using multiple Kali Linux tools, while Zenmap/Nmap was used to identify live systems and document the authorized network topology.
+
+| Module | Focus | Status |
+|---|---|---|
+| **W2-PM1** | Footprinting & External Reconnaissance | **Completed** |
+| **W2-PM5** | Network Scanning & Topology Mapping | **Completed** |
+| **W2-PM-FINAL** | Assessment Documentation & Reporting | **Completed** |
+
+**Environment:** Kali Linux · WHOIS · WhatWeb · nslookup · cURL · DNSRecon · WAFW00F · Zenmap/Nmap
+
+**Next:** Continue with subsequent authorized cybersecurity assessment exercises.
+
+**Week 02 — Footprinting, Network Scanning & Security Assessment: Completed**
