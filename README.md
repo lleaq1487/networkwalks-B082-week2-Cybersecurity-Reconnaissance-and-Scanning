@@ -299,9 +299,213 @@ The exported topology PDF provides a graphical representation of the hosts disco
 
 The Zenmap assessment successfully identified the active hosts within the authorized LAN and documented their IP and MAC addresses. The resulting topology diagram provides a visual representation of the discovered network and has been preserved as supporting evidence.
 
-### Evidence
+Assessment Results & Analysis
+        ↓
+Cross-Phase Correlation
+        ↓
+Security Observations
+        ↓
+Recommendations
+        ↓
+Assessment Limitations
+        ↓
+Conclusion
+        ↓
+Evidence Register
 
-Zenmap scan output, host information, and the exported topology PDF are retained under:
+## Assessment Results & Analysis
+
+The Week 02 assessment combined two complementary activities: **W2-PM1 — Footprinting** and **W2-PM5 — Network Scanning**. Together, these activities established an evidence-based view of the authorized target's external footprint and the reachable systems within the assessed local network.
+
+### W2-PM1 — External Footprinting
+
+The footprinting phase used six Kali Linux utilities across multiple reconnaissance layers:
+
+| Reconnaissance Layer | Tool | Assessment Focus |
+|---|---|---|
+| Domain Intelligence | **WHOIS** | Publicly available domain information |
+| DNS Resolution | **nslookup** | Domain-to-address resolution |
+| DNS Enumeration | **DNSRecon** | Publicly observable DNS records |
+| Web Fingerprinting | **WhatWeb** | Detectable web technologies |
+| HTTP Analysis | **cURL** | HTTP response and header information |
+| Security-Control Detection | **WAFW00F** | Detectable Web Application Firewall |
+
+The individual results were reviewed and correlated to establish an initial **external attack-surface profile** of the authorized target.
+
+### W2-PM5 — Network Scanning
+
+The network-scanning phase used **Zenmap/Nmap** to perform authorized host discovery within the assessed local network.
+
+| Assessment Metric | Result |
+|---|---:|
+| Live Hosts Identified | **4** |
+| IP Addresses Recorded | **4** |
+| MAC Addresses Recorded | **4** |
+| Network Topology | **Generated and exported** |
+| Discovery Method | **Nmap Ping Scan** |
+
+The discovered host information and topology output were preserved as supporting assessment evidence.
+
+### Cross-Phase Correlation
 
 ```text
+                    AUTHORIZED SCOPE
+                           │
+                           ▼
+                  W2-PM1 FOOTPRINTING
+                           │
+          ┌────────────────┼────────────────┐
+          ▼                ▼                ▼
+       DOMAIN             DNS              WEB
+      INTELLIGENCE      ANALYSIS         ANALYSIS
+          │                │                │
+          └────────────────┼────────────────┘
+                           ▼
+                  EXTERNAL FOOTPRINT
+                           │
+                           ▼
+                  W2-PM5 SCANNING
+                           │
+          ┌────────────────┼────────────────┐
+          ▼                ▼                ▼
+      LIVE HOSTS         IP/MAC          TOPOLOGY
+                           │
+                           ▼
+                   NETWORK EXPOSURE
+```
+
+## Evidence
+
+All screenshots, terminal outputs, scan results, and topology files from the Week 02 assessment are organized by module.
+
+### W2-PM1 — Footprinting
+
+```text
+evidence/footprinting/
+├── whois/
+├── whatweb/
+├── nslookup/
+├── curl/
+├── wafw00f/
+└── dnsrecon/
+```
+```text
 evidence/zenmap/
+├── scan-output/
+├── host-details/
+└── network-topology
+```
+## Security Observations
+
+The assessment identified the following security-relevant observations within the authorized scope:
+
+1. **Domain Information Exposure**  
+   Publicly available domain information was identified through WHOIS reconnaissance, contributing to the target's external information footprint.
+
+2. **DNS Information Exposure**  
+   DNS reconnaissance provided visibility into publicly observable DNS records and associated infrastructure.
+
+3. **Web Technology Exposure**  
+   Web fingerprinting identified technologies externally detectable from the target application, providing insight into its technology stack.
+
+4. **HTTP Information Exposure**  
+   HTTP response analysis provided additional visibility into the target's web environment through observable response information and headers.
+
+5. **Web Security Control Detection**  
+   WAF reconnaissance identified an externally detectable Web Application Firewall, providing insight into the target's defensive architecture.
+
+6. **Active Host Discovery**  
+   Network scanning identified **four live hosts** within the authorized LAN, establishing the active-host baseline for the assessed network segment.
+
+7. **Network Identifier Visibility**  
+   IP and MAC addresses were recorded for the discovered hosts, allowing the identified systems to be documented.
+
+8. **Network Topology Visibility**  
+   Zenmap generated a topology representation of the discovered environment, providing a graphical view of the observed network relationships.
+
+### Assessment Note
+
+These observations represent **reconnaissance and network-visibility results**, not confirmed security vulnerabilities. Additional testing and validation would be required to determine exploitability, impact, and severity.
+
+## Recommendations
+
+Based on the observations identified during the assessment, the following security measures are recommended:
+
+1. **Review Domain and DNS Exposure**  
+   Periodically review publicly available domain and DNS information and remove unnecessary records or exposure where operationally appropriate.
+
+2. **Maintain Web Technologies**  
+   Keep externally exposed web technologies, frameworks, plugins, and supporting components properly maintained and updated.
+
+3. **Review HTTP Configuration**  
+   Periodically review web-server configuration and HTTP security headers to reduce unnecessary information disclosure and strengthen the web security posture.
+
+4. **Maintain WAF Controls**  
+   Regularly review WAF configuration, coverage, logging, monitoring, and rule effectiveness to ensure that the security control remains appropriately configured.
+
+5. **Maintain Asset Inventory**  
+   Keep an accurate inventory of systems connected to the internal network and periodically verify whether each system requires network access.
+
+6. **Strengthen Network Segmentation**  
+   Apply appropriate segmentation and access-control policies to limit unnecessary communication between internal systems.
+
+7. **Perform Periodic Attack-Surface Reviews**  
+   Conduct authorized reconnaissance and network-discovery assessments periodically to identify changes in exposed assets, technologies, and network infrastructure.
+
+### Recommendation Priority
+
+| Priority | Security Area |
+|---|---|
+| **High** | Review externally exposed assets and security controls |
+| **Medium** | Review DNS, web-server, and HTTP configuration |
+| **Medium** | Maintain internal asset inventory and network segmentation |
+| **Low** | Conduct periodic attack-surface reviews |
+
+## Assessment Limitations
+
+This assessment was conducted as a controlled cybersecurity laboratory exercise within the defined authorization and assessment scope.
+
+**The assessment was limited to:**
+
+- External footprinting and reconnaissance
+- Domain and DNS enumeration
+- Web technology identification
+- HTTP response analysis
+- WAF detection
+- Authorized host discovery
+- IP and MAC address identification
+- Network topology mapping
+
+The assessment did **not** include exploitation, credential attacks, brute-force testing, denial-of-service activity, or comprehensive vulnerability validation.
+
+Therefore, the results represent an **initial reconnaissance and network-exposure assessment** and should not be interpreted as a complete penetration test or vulnerability assessment.
+
+The findings reflect the environment observed during the assessment period and may change as the target or network configuration changes.
+
+## Conclusion
+
+The Week 02 assessment successfully completed the defined **footprinting and network-scanning objectives** within the authorized scope.
+
+**W2-PM1** established an external reconnaissance baseline by collecting domain, DNS, web-technology, HTTP, and security-control information using six Kali Linux tools.
+
+**W2-PM5** provided an active view of the authorized LAN through Zenmap/Nmap, identifying **four live hosts**, recording their IP and MAC addresses, and documenting the observed network topology.
+
+**The assessment followed a structured reconnaissance workflow:**
+
+```text
+Scope Definition
+        ↓
+External Footprinting
+        ↓
+Information Correlation
+        ↓
+Network Discovery
+        ↓
+Host Identification
+        ↓
+Topology Analysis
+        ↓
+Evidence Collection
+        ↓
+Security Reporting
+```
