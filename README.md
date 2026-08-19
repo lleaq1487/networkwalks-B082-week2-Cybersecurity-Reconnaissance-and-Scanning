@@ -150,7 +150,7 @@ The six reconnaissance tools provided complementary information about the author
 
 Together, these results established the initial external attack-surface profile and provided the reconnaissance baseline for the next phase, **W2-PM5 — Zenmap-Based Network Scanning**.
 
-## 🔍 Module 5 — Network Scanning with Zenmap
+## Module 5 — Network Scanning with Zenmap
 
 **Objective:** Conduct controlled network reconnaissance within the authorized scope to identify reachable hosts, exposed network services, and the structure of the assessed network.
 
