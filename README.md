@@ -150,22 +150,12 @@ The six reconnaissance tools provided complementary information about the author
 
 Together, these results established the initial external attack-surface profile and provided the reconnaissance baseline for the next phase, **W2-PM5 — Zenmap-Based Network Scanning**.
 
-## Module 5 — Network Scanning with Zenmap
+## Module 5 — Network Scanning with Zenmap (W2-PM5)
 
-**Objective:** Conduct controlled network reconnaissance within the authorized scope to identify reachable hosts, exposed network services, and the structure of the assessed network.
+## Objective
+Identify active hosts, enumerate network information, and visualize network topology using Zenmap.
 
-**Task 1 — Host Discovery**  
-Performed an authorized Nmap/Zenmap discovery scan to identify active hosts and determine which systems were reachable within the assessment range.
-
-**Task 2 — Port & Service Enumeration**  
-Analyzed responsive hosts to identify accessible ports, protocols, and services, providing an initial view of the network's exposed service surface.
-
-**Task 3 — Network Topology Analysis**  
-Used Zenmap's **Topology** view to visualize relationships between discovered hosts and generate a graphical representation of the assessed network.
-
-**Evidence:** Scan output, host details, screenshots, and the exported topology are maintained under `evidence/zenmap/` and referenced in the final assessment report.
-
-**Key Takeaway:** Network scanning provides an active perspective of the authorized environment, complementing the passive intelligence collected during footprinting. The resulting host, port, service, and topology data establish the network-exposure baseline for subsequent security analysis.
+---
 
 ## 1. Network Configuration & Scope
 
@@ -178,8 +168,7 @@ Identify the local IP address and LAN subnet before performing network discovery
 ```cmd
 ipconfig
 ```
-
-
+---
 
 ## 2. Live Host Discovery
 
@@ -191,7 +180,7 @@ Identify active hosts within the authorized LAN subnet using Zenmap's Ping Scan.
 
 - **Target:** Local LAN subnet identified in Task 1
 - **Profile:** Ping Scan
-- **Nmap Scan:** Host discovery
+- **Nmap Scan:** Host Discovery
 
 ### Command
 
@@ -199,8 +188,13 @@ Identify active hosts within the authorized LAN subnet using Zenmap's Ping Scan.
 nmap -sn 10.0.0.0/24
 ```
 
+### Evidence
 
-## 3. Live Host Count
+<img width="1919" height="1005" alt="Screenshot 2026-08-20 091413" src="https://github.com/user-attachments/assets/b2b43df3-ab61-4bdd-89d5-2a8504e8fea3" />
+
+---
+
+## 3️. Live Host Count
 
 ### Objective
 
@@ -212,10 +206,14 @@ The scan identified **4 live hosts**, including the assessment system.
 
 ### Evidence
 
-The live-host count is confirmed in the Zenmap scan output and recorded as part of the assessment results.
+<img width="1919" height="1005" alt="Screenshot 2026-08-20 091413" src="https://github.com/user-attachments/assets/e4d4c06b-677a-4a5c-9189-e804fa0824f6" /> <br>
+<img width="1919" height="996" alt="Screenshot 2026-08-20 091501" src="https://github.com/user-attachments/assets/af485db3-9429-4147-853d-f24acb2395f6" /> <br>
+<img width="1919" height="975" alt="Screenshot 2026-08-20 091528" src="https://github.com/user-attachments/assets/262a8a25-ed32-46a2-985c-e8a544a516e5" /> <br>
+<img width="1919" height="985" alt="Screenshot 2026-08-20 091556" src="https://github.com/user-attachments/assets/25b87d0f-a4b7-4fc8-b0a5-920ad929ba5a" /> <br>
 
+---
 
-## 4. Live Host IP Addresses
+## 4️. Live Host IP Addresses
 
 ### Objective
 
@@ -226,18 +224,14 @@ Record the IPv4 addresses of the hosts identified as active during the Zenmap di
 The following hosts were identified as live:
 
 | Host | IP Address |
-|---|---|
-| Host 1 | `10.0.0.1` |
-| Host 2 | `10.0.0.4` |
-| Host 3 | `10.0.0.19` |
-| Host 4 | `10.0.0.5` |
+|------|------------|
+| Host 1 | `10.0.0.0/24` |
+| Host 2 | `10.0.0.0/25` |
+| Host 3 | `10.0.0.0/26` |
+| Host 4 | `10.0.0.0/27` |
+---
 
-### Evidence
-
-The IP addresses were obtained from the Zenmap host-discovery results and recorded for the final assessment.
-
-
-## 5. Live Host MAC Addresses
+## 5️. Live Host MAC Addresses
 
 ### Objective
 
@@ -246,20 +240,17 @@ Record the MAC addresses associated with the live hosts identified during the Ze
 ### Results
 
 | Host | MAC Address |
-|---|---|
-| Host 1 | `00:50:56:E3:B3:2C` |
-| Host 2 | `00:0C:29:C0:94:8F` |
-| Host 3 | `00:50:56:E9:64:82` |
-| Host 4 | `00-0C-29-40-C0-93` |
+|------|-------------|
+| Host 1 | `00:50:56:C0:00:02` |
+| Host 2 | `00:50:56:C0:00:02` |
+| Host 3 | `00:50:56:C0:00:02` |
+| Host 4 | `00:50:56:C0:00:02` |
 
-The fourth MAC address represents the local system and was obtained using the system's network configuration.
+The fourth MAC address represents the local assessment system and was obtained using the system's network configuration.
 
-### Evidence
+---
 
-The MAC addresses were recorded from the Zenmap scan results and local network configuration.
-
-
-## 6. Network Topology Mapping
+## 6️. Network Topology Mapping
 
 ### Objective
 
@@ -274,27 +265,33 @@ Visualize the discovered hosts and network relationships using Zenmap's **Topolo
 5. Select **PDF** as the output format.
 6. Store the exported topology with the assessment evidence.
 
-### Output
-
-**Topology File:** `evidence/zenmap/network-topology.pdf`
-
 ### Evidence
 
-The exported topology PDF provides a graphical representation of the hosts discovered during the authorized network scan.
+<img width="1906" height="957" alt="Screenshot 2026-08-20 091650" src="https://github.com/user-attachments/assets/2c3accd0-22c7-4bea-b603-6b5677b3a9de" />
 
+
+### Output
+
+**Topology File:**
+
+```text
+evidence/zenmap/network-topology.pdf
+```
+---
 
 ## W2-PM5 Results Summary
 
 | Assessment Item | Result |
-|---|---|
+|-----------------|---------|
 | Live Hosts Identified | **4** |
 | Network Discovery | Completed |
 | IP Addresses Recorded | **4** |
 | MAC Addresses Recorded | **4** |
-| Network Topology | Generated and exported to PDF |
+| Network Topology | Generated and Exported to PDF |
 | Scanning Tool | Zenmap / Nmap |
-| Assessment Scope | Authorized local LAN |
+| Assessment Scope | Authorized Local LAN |
 
+---
 ### Key Takeaway
 
 The Zenmap assessment successfully identified the active hosts within the authorized LAN and documented their IP and MAC addresses. The resulting topology diagram provides a visual representation of the discovered network and has been preserved as supporting evidence.
